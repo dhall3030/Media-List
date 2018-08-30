@@ -1,0 +1,33 @@
+<section>
+	
+	
+
+	<div class="container"> 
+
+		{{>_msg}}
+
+		{{>_errors}}
+	
+		<h1>Media Index Page</h1>
+
+
+		{{#each media}}
+
+		<p id="{{_id}}">{{title}} <a href="/media/show/{{_id}}" >Show</a> </p>
+
+		{{else}}
+
+		<p>No media listed</p>
+
+		{{/each}}
+
+		
+
+		
+
+	</div>
+
+
+
+
+</section>

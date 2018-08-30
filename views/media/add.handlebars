@@ -1,0 +1,92 @@
+<section>
+	
+	
+
+	<div class="container"> 
+
+		{{#each errors}} 
+
+			<div class="alert alert-danger">
+				
+			{{text}}
+
+			</div>
+
+
+
+		{{else}}
+
+
+
+
+		{{/each}}
+	
+		<h1>Add to media list</h1>
+
+		<div class="input-container">
+
+			<form action="/media" method="POST">
+
+				<div class="form-group">
+
+					<label for="title">Title</label>
+
+					<input type="text" name="title" value="" required="">
+							
+
+
+				</div>
+
+				<div class="form-group">
+					
+					<label for="type">Type</label>
+
+					<select name="type">
+						
+						<option value="movie" selected >Movie</option>
+						<option value="book">book</option>
+						<option value="tv show">tv show</option>
+						<option value="music">music</option>
+
+
+
+					</select>
+					
+
+
+				</div>
+
+				<div class="form-group">
+
+					<label for="description">Description</label>
+
+				
+					<textarea  name="description" required ></textarea>		
+
+
+				</div> 
+
+				<div class="row">
+
+
+				<label>
+	        		<input type="checkbox" name="active" checked="checked" />
+	        		<span>Active list Item ("non-active items will be moved to the archive")</span>
+	      		</label>
+
+	      		</div>
+
+
+				<button type="submit">Submit</button>
+
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+
+
+</section>

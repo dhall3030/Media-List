@@ -1,0 +1,44 @@
+<header id="main-header">
+	
+	<nav>
+		<div class="container group no-padding">
+
+			{{#if user}}
+				{{>_navicon}}
+			{{/if}}
+			
+			<a class="brand" href="/">Media List</a>
+
+			
+				<ul>
+
+					
+					
+					{{#if user}}
+
+						<li><a href="/media">Welcome {{user.name}}</a></li>
+
+						<li><a href="/users/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+
+					{{else}}
+
+						<li><a href="/users/login"><i class="fa fa-sign-in"></i> Login</a></li>
+						<li><a href="/users/register"><i class="fa fa-user-plus"></i> Register</a></li>
+
+					{{/if}}
+
+						
+
+
+				</ul>
+
+			
+			
+
+			
+
+		</div>
+	</nav>
+
+
+</header>

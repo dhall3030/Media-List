@@ -1,0 +1,104 @@
+<section>
+	
+	
+
+	<div class="container"> 
+
+		{{#each errors}} 
+
+			<div class="alert alert-danger">
+				
+			{{text}}
+
+			</div>
+
+
+
+		{{else}}
+
+
+
+
+		{{/each}}
+
+
+		
+	
+		<h1>Edit Media Item</h1> 
+
+
+		<h3>{{media.title}}</h3>
+
+		
+
+		<form action="/media/{{media.id}}?_method=PUT" method="POST"> 
+
+			<input type="hidden" name="_method" value="PUT">
+
+			<div class="form-group">
+
+				<label for="title">Title</label>
+
+				<input type="text" name="title" value="{{media.title}}" required="">
+						
+
+
+			</div>
+
+			<div class="form-group">
+
+				<label for="type">Type</label>
+
+
+				<select name="type">
+
+					{{#select media.type}}
+					
+					<option value="movie" selected >Movie</option>
+					<option value="book">book</option>
+					<option value="tv show">tv show</option>
+					<option value="music">music</option>
+
+					{{/select}}
+
+
+
+				</select>
+				
+
+
+			</div>
+
+			<div class="form-group">
+
+				<label for="description">Description</label>
+
+			
+				<textarea  name="description" required >{{media.description}}</textarea>		
+
+
+			</div> 
+
+
+			<div class="row">
+
+
+			<label>
+        		<input type="checkbox" name="active" {{isActive media.active}}  />
+        		<span>Active list Item ("Non-active items will be moved to the archive")</span>
+      		</label>
+
+      		</div>
+
+
+			<button type="submit">Submit</button>
+
+
+		</form>
+
+	</div>
+
+
+
+
+</section>
