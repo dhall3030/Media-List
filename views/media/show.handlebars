@@ -6,7 +6,10 @@
 
 		<h3>{{media.title}}</h3>
 
-		<p>{{media.description}}</p>
+		<p><strong>Title:</strong> {{media.title}}</p>
+		<p><strong>Type:</strong> {{media.type}} </p>
+		<p><strong>Description:</strong><br>
+		{{media.description}}</p>
 
 		<p><a href="/media/edit/{{media._id}}" >Edit</a> | <a @click="confirmDelete($event)" href="/media/delete/{{media._id}}" >Delete</a></p>
 

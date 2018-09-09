@@ -43,7 +43,7 @@ router.post('/login', (req, res, next) =>{
 
 	passport.authenticate('local', {
 
-		successRedirect: '/media',
+		successRedirect: '/media/index/1',
 		failureRedirect: '/users/login',
 		failureFlash: true
 

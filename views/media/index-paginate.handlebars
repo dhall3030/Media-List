@@ -1,0 +1,82 @@
+<section>
+	
+	
+
+	<div class="container"> 
+
+		{{>_msg}}
+
+		{{>_errors}}
+	
+		<h1>Media Index Page</h1>
+
+        <table>
+        	<thead>
+        		
+        		<tr>
+        			<th>Item Name</th>
+        			<th>Type</th>
+        			<th>View</th>
+        		</tr>
+
+        	</thead>
+
+        	<tbody>
+
+        		{{#each media}}
+
+					<tr id="{{_id}}">
+
+						<td>{{title}}</td><td>{{type}}</td><td><a href="/media/show/{{_id}}" >View</a></td>  
+
+					</tr>
+
+				{{else}}
+
+					<p>No media listed</p>
+
+				{{/each}}
+
+        	</tbody>
+        	
+       
+		
+
+	    </table>
+
+		
+		{{!-- {{pageNumber}}
+
+		{{pages}} --}}
+		
+		
+
+		
+
+		<div class="pagination pagination-centered">
+			  <ul>
+			    {{#paginate pagination type="first"}}
+			      <li {{#if disabled}}class="disabled"{{/if}}><a href="/media/index/{{n}}">First</a></li>
+			    {{/paginate}}
+			    {{#paginate pagination type="previous"}}
+			      <li {{#if disabled}}class="disabled"{{/if}}><a href="/media/index/{{n}}">Prev</a></li>
+			    {{/paginate}}
+			    {{#paginate pagination type="middle" limit="7"}}
+			      <li {{#if active}}class="active"{{/if}}><a href="/media/index/{{n}}">{{n}}</a></li>
+			    {{/paginate}}
+			    {{#paginate pagination type="next"}}
+			      <li {{#if disabled}}class="disabled"{{/if}}><a href="/media/index/{{n}}">Next</a></li>
+			    {{/paginate}}
+			    {{#paginate pagination type="last"}}
+			      <li {{#if disabled}}class="disabled"{{/if}}><a href="/media/index/{{n}}">Last</a></li>
+			    {{/paginate}}
+			  </ul>
+		</div>
+		
+	
+	</div>
+
+
+
+
+</section>

@@ -18,37 +18,79 @@ const Media = mongoose.model('media');
 
 //Media Index 
 
-router.get('/',ensureAuthenticated, (req , res) => {
-	 //Media.find({})
+// router.get('/',ensureAuthenticated, (req , res) => {
+// 	 //Media.find({})
 
-	 Media.find({user: req.user.id, active: true})
-	 .sort({date: 'desc'})
-	 .then(media=>{
+// 	 Media.find({user: req.user.id, active: true})
+// 	 .sort({date: 'desc'})
+// 	 .then(media=>{
 
-		res.render('media/index', {
+// 		res.render('media/index', {
 
-			media:media
+// 			media:media
 
-		});
+// 		});
 
-	});
+// 	});
 	
 
 	
 
-});
+// });
 
 //Archive route
-router.get('/archive',ensureAuthenticated, (req , res) => {
+// router.get('/archive',ensureAuthenticated, (req , res) => {
+// 	 //Media.find({})
+
+// 	 Media.find({user: req.user.id, active: false})
+// 	 .sort({date: 'desc'})
+// 	 .then(media=>{
+
+// 		res.render('media/archive', {
+
+// 			media:media
+
+// 		});
+
+// 	});
+	
+
+	
+
+// });
+
+
+//index with pagination 
+
+router.get('/index/:page',ensureAuthenticated, (req , res) => {
 	 //Media.find({})
 
-	 Media.find({user: req.user.id, active: false})
+	 let pageNumber = Math.max(0, req.params.page)
+	 let size = 5
+
+	 let query={}
+
+	 query.user = req.user.id
+	 query.active = true
+
+
+	 Media.find(query)
 	 .sort({date: 'desc'})
+	 .skip(size * (pageNumber -1))
+	 .limit(size)
 	 .then(media=>{
 
-		res.render('media/archive', {
+		Media.count(query).exec(function(err, count) {
 
-			media:media
+			let pageCount = Math.ceil(count / size)
+
+			res.render('media/index-paginate', {
+
+				media:media,
+				pageNumber: pageNumber,
+				pages: pageCount,
+				pagination: { page: pageNumber, pageCount: pageCount}
+			});
 
 		});
 
@@ -59,7 +101,45 @@ router.get('/archive',ensureAuthenticated, (req , res) => {
 
 });
 
+//Archive with pagination 
+router.get('/archive/:page',ensureAuthenticated, (req , res) => {
+	 //Media.find({})
 
+	let pageNumber = Math.max(0, req.params.page)
+	let size = 5
+
+	let query={}
+
+	 query.user = req.user.id
+	 query.active = false
+
+
+	 Media.find(query)
+	 .sort({date: 'desc'})
+	 .skip(size * (pageNumber -1))
+	 .limit(size)
+	 .then(media=>{
+
+		Media.count(query).exec(function(err, count) {
+
+			let pageCount = Math.ceil(count / size)
+
+			res.render('media/archive-paginate', {
+
+				media:media,
+				pageNumber: pageNumber,
+				pages: pageCount,
+				pagination: { page: pageNumber, pageCount: pageCount}
+			});
+
+		});
+
+	});
+	
+
+	
+
+});
 
 
 // Add Media Form 
@@ -133,7 +213,7 @@ router.post('/',ensureAuthenticated,(req , res) => {
 
 			req.flash('success_msg','media item added sussessfully');
 			//res.send('done!');
-			res.redirect('/media');
+			res.redirect('/media/index/1');
 
 		})
 
@@ -164,7 +244,7 @@ router.get('/edit/:id',ensureAuthenticated ,(req , res) => {
 
 		if(req.user.id != media.user ){
 
-			res.redirect('/media');
+			res.redirect('/media/index/1');
 
 	    }else{
 
@@ -224,7 +304,7 @@ router.put('/:id',ensureAuthenticated,(req , res)=>{
 			
 			req.flash('success_msg','media item updated sussessfully');
 
-			res.redirect('/media');
+			res.redirect('/media/index/1');
 
 		})
 
@@ -248,7 +328,7 @@ router.get('/show/:id',ensureAuthenticated ,(req , res) => {
 
 		if(req.user.id != media.user ){
 
-			res.redirect('/media');
+			res.redirect('/media/index/1');
 
 	    }else{
 
@@ -290,7 +370,7 @@ router.get('/delete/:id',ensureAuthenticated,(req, res)=>{
 
 			req.flash('success_msg','Media item removed');
 
-			res.redirect('/media');
+			res.redirect('/media/index/1');
 
 
 		})

@@ -8,6 +8,11 @@ const path = require('path');
 const passport = require('passport');
 const mongoose =require('mongoose');
 
+//pagination helper
+const paginate = require('handlebars-paginate');
+
+
+
 const app = express();
 
 
@@ -67,7 +72,8 @@ mongoose.connect(db.mongoURI, {
  	helpers:{
  		
  		isActive: isActive, 
- 		select: select
+ 		select: select,
+ 		paginate: paginate
  	
  	},
 	defaultLayout: 'main'
