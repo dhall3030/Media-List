@@ -57,19 +57,19 @@
 		<div class="pagination pagination-centered">
 			  <ul>
 			    {{#paginate pagination type="first"}}
-			      <li {{#if disabled}}class="disabled"{{/if}}><a href="/media/{{n}}">First</a></li>
+			      <li {{#if disabled}}class="disabled"{{/if}}><a href="/media/archive/{{n}}">First</a></li>
 			    {{/paginate}}
 			    {{#paginate pagination type="previous"}}
-			      <li {{#if disabled}}class="disabled"{{/if}}><a href="/media/{{n}}">Prev</a></li>
+			      <li {{#if disabled}}class="disabled"{{/if}}><a href="/media/archive/{{n}}">Prev</a></li>
 			    {{/paginate}}
 			    {{#paginate pagination type="middle" limit="7"}}
-			      <li {{#if active}}class="active"{{/if}}><a href="/media/{{n}}">{{n}}</a></li>
+			      <li {{#if active}}class="active"{{/if}}><a href="/media/archive/{{n}}">{{n}}</a></li>
 			    {{/paginate}}
 			    {{#paginate pagination type="next"}}
-			      <li {{#if disabled}}class="disabled"{{/if}}><a href="/media/{{n}}">Next</a></li>
+			      <li {{#if disabled}}class="disabled"{{/if}}><a href="/media/archive/{{n}}">Next</a></li>
 			    {{/paginate}}
 			    {{#paginate pagination type="last"}}
-			      <li {{#if disabled}}class="disabled"{{/if}}><a href="/media/{{n}}">Last</a></li>
+			      <li {{#if disabled}}class="disabled"{{/if}}><a href="/media/archive/{{n}}">Last</a></li>
 			    {{/paginate}}
 			  </ul>
 		</div>
